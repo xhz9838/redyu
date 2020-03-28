@@ -1,0 +1,35 @@
+server:
+  port: 10001
+  servlet:
+    context-path: /api
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/redyu_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 1234
+  profiles:
+    active: dev
+  redis:
+    host: localhost
+    port: 6379
+    #timeout: 3000
+    password: 123456
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+      resolve-lazily: true
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    default-enum-type-handler: com.czxy.redyu.handler.PostStatusHandler
+## 这里即是配置SQL打印的关键位置，设置日志级别为debug begin
+#logging:
+#  level:
+#    com.czxy.redyu.core: debug
+#自定义配置
+redyu:
+  desk:
+    url: http://www.redyu.run #前台url
