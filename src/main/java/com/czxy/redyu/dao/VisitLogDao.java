@@ -6,7 +6,7 @@ import tk.mybatis.mapper.common.Mapper;
 /**
  * (VisitLog)表数据库访问层
  *
- * @author makejava
+ * @author xuhongzu
  * @since 2020-03-28 11:47:58
  */
 @org.apache.ibatis.annotations.Mapper

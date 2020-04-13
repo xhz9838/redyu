@@ -9,8 +9,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @author ryanwang
- * @date 2019-12-10
+ * @author xuhongzu
+ * @version 1.0
+ * @date 2019/12/10
  */
 @Slf4j
 public class ImageUtils {

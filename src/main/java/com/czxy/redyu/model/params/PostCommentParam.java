@@ -6,10 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 /**
- * PostComment param.
- *
- * @author johnniang
- * @date 3/22/19
+ * @author xuhongzu
+ * @version 1.0
+ * @date 2019/12/10
  */
 @Data
 @ToString(callSuper = true)

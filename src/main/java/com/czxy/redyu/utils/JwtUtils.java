@@ -1,10 +1,4 @@
 package com.czxy.redyu.utils;
-
-/**
- * @author xuhongzu
- * @version 1.0
- * @date 2019/12/14
- */
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -19,7 +13,9 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 
 /**
- * Created by liangtong.
+ * @author xuhongzu
+ * @version 1.0
+ * @date 2019/12/14
  */
 public class JwtUtils {
     /**

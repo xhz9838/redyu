@@ -61,7 +61,7 @@ public class QiniuOssFileHandler implements FileHandler {
         String styleRule = optionService.getByPropertyOrDefault(QiniuOssProperties.OSS_STYLE_RULE, String.class, "");
         String thumbnailStyleRule = optionService.getByPropertyOrDefault(QiniuOssProperties.OSS_THUMBNAIL_STYLE_RULE, String.class, "");
 
-        // Create configuration
+
         Configuration cfg = null;
         switch (region) {
             case "z0":
@@ -83,19 +83,19 @@ public class QiniuOssFileHandler implements FileHandler {
                 cfg = new Configuration(Region.autoRegion());
         }
 
-        // Create auth
+
         Auth auth = Auth.create(accessKey, secretKey);
-        // Build put plicy
+
         StringMap putPolicy = new StringMap();
         putPolicy.put("returnBody", "{\"size\":$(fsize), " +
                 "\"width\":$(imageInfo.width), " +
                 "\"height\":$(imageInfo.height)," +
                 " \"key\":\"$(key)\", " +
                 "\"hash\":\"$(etag)\"}");
-        // Get upload token
+
         String uploadToken = auth.uploadToken(bucket, null, 3600, putPolicy);
 
-        // Create temp path
+
         Path tmpPath = Paths.get(System.getProperty("java.io.tmpdir"), bucket);
 
         StringBuilder basePath = new StringBuilder(protocol)
@@ -117,11 +117,11 @@ public class QiniuOssFileHandler implements FileHandler {
                     .append(".")
                     .append(extension);
 
-            // Get file recorder for temp directory
+
             FileRecorder fileRecorder = new FileRecorder(tmpPath.toFile());
-            // Get upload manager
+
             UploadManager uploadManager = new UploadManager(cfg, fileRecorder);
-            // Put the file
+
             Response response = uploadManager.put(file.getInputStream(), upFilePath.toString(), uploadToken, null, null);
 
             log.debug("QnYun response: [{}]", response.toString());
@@ -129,10 +129,10 @@ public class QiniuOssFileHandler implements FileHandler {
 
             response.jsonToObject(QiNiuPutSet.class);
 
-            // Convert response
+
             QiNiuPutSet putSet = JsonUtils.jsonToObject(response.bodyString(), QiNiuPutSet.class);
 
-            // Get file full path
+
             String filePath = StringUtils.join(basePath.toString(), upFilePath.toString());
 
 
@@ -160,16 +160,14 @@ public class QiniuOssFileHandler implements FileHandler {
     public void delete(String key) {
         Assert.notNull(key, "File key must not be blank");
 
-        // Get all config
-
         String accessKey = optionService.getByPropertyOfNonNull(QiniuOssProperties.OSS_ACCESS_KEY).toString();
         String secretKey = optionService.getByPropertyOfNonNull(QiniuOssProperties.OSS_SECRET_KEY).toString();
         String bucket = optionService.getByPropertyOfNonNull(QiniuOssProperties.OSS_BUCKET).toString();
 
-        // Create configuration
+
         Configuration configuration = new Configuration(Region.autoRegion());
 
-        // Create auth
+
         Auth auth = Auth.create(accessKey, secretKey);
 
         BucketManager bucketManager = new BucketManager(auth, configuration);

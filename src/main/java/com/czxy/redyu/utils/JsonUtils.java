@@ -13,10 +13,9 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Json utilities.
- *
- * @author johnniang
- * @date 3/18/19
+ * @author xuhongzu
+ * @version 1.0
+ * @date 2019/12/10
  */
 public class JsonUtils {
 

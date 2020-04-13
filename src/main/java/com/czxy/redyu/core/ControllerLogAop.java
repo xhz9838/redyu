@@ -37,12 +37,7 @@ public class ControllerLogAop {
         String className = joinPoint.getTarget().getClass().getSimpleName();
         String methodName = joinPoint.getSignature().getName();
         Object[] args = joinPoint.getArgs();
-//        if(methodName.equals("archiveForPage")){
-//
-//           HttpServletRequest request = (HttpServletRequest) args[2];
-//            System.out.println("ip:"+request.getRemoteAddr()+"访问首页");
-//        }
-        // Get request attribute
+
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = Objects.requireNonNull(requestAttributes).getRequest();
 
@@ -59,7 +54,6 @@ public class ControllerLogAop {
                 request.getMethod(),
                 ServletUtil.getClientIP(request));
 
-//        System.out.println( ServletUtil.getClientIP(request));
         if (args == null || !log.isDebugEnabled()) {
             return;
         }

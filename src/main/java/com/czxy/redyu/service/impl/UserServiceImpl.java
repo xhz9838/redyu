@@ -9,19 +9,17 @@ import com.czxy.redyu.model.dto.BlogAdminLineChart;
 import com.czxy.redyu.model.dto.BlogInformation;
 import com.czxy.redyu.model.dto.UserDTO;
 import com.czxy.redyu.model.entity.User;
+import com.czxy.redyu.model.entity.VisitLog;
 import com.czxy.redyu.model.params.LoginParam;
-import com.czxy.redyu.model.support.RedyuConst;
 import com.czxy.redyu.security.token.AuthToken;
-import com.czxy.redyu.service.CommentService;
-import com.czxy.redyu.service.OptionService;
-import com.czxy.redyu.service.PostService;
-import com.czxy.redyu.service.UserService;
+import com.czxy.redyu.service.*;
 import com.czxy.redyu.utils.JwtUtils;
 import com.czxy.redyu.utils.RasUtils;
 import com.czxy.redyu.utils.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,10 +54,14 @@ public class UserServiceImpl implements UserService {
     private OptionService optionService;
 
 
+    @Resource
+    private VisitLogService visitLogService;
 
-    private static final String pubKeyPath = RedyuConst.USER_HOME+"\\ras\\ras.pub";
+    @Value("${redyu.ras.pub}")
+    private  String pubKeyPath ;
 
-    private static final String priKeyPath = RedyuConst.USER_HOME+"\\ras\\ras.pri";
+    @Value("${redyu.ras.pri}")
+    private  String priKeyPath;
 
     @Resource
     private RedisUtil redisUtil;
@@ -115,6 +117,11 @@ public class UserServiceImpl implements UserService {
         }
 
         return null;
+    }
+
+    @Override
+    public List<VisitLog> visitLog() {
+        return visitLogService.visitLog();
     }
 
     public AuthToken buildAuthToken(User user) {

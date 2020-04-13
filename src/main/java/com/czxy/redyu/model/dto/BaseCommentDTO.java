@@ -10,13 +10,7 @@ import lombok.ToString;
 
 import java.time.LocalDateTime;
 
-/**
- * Base comment output dto.
- *
- * @author johnniang
- * @author ryanwang
- * @date 2019-03-20
- */
+
 @Data
 @ToString
 @EqualsAndHashCode

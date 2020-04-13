@@ -37,6 +37,7 @@ public class ContentBlogController {
 
     @GetMapping("/blogInformation")
     public BlogInformation blogInformation(){
+
         return userService.blogInformation();
     }
 

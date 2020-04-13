@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
- * Controller advice for comment result.
- *
- * @author johnniang
+ * @author xuhongzu
+ * @version 1.0
+ * @date 2019/12/10
  */
 @ControllerAdvice("com.czxy.redyu.controller")
 public class CommonResultControllerAdvice implements ResponseBodyAdvice<Object> {
@@ -36,15 +36,12 @@ public class CommonResultControllerAdvice implements ResponseBodyAdvice<Object> 
                                         MediaType contentType, Class<? extends HttpMessageConverter<?>> converterType,
                                         ServerHttpRequest request, ServerHttpResponse response) {
         MappingJacksonValue container = getOrCreateContainer(body);
-        // The contain body will never be null
+
         beforeBodyWriteInternal(container, contentType, returnType, request, response);
         return container;
     }
 
-    /**
-     * Wrap the body in a {@link MappingJacksonValue} value container (for providing
-     * additional serialization instructions) or simply cast it if already wrapped.
-     */
+
     private MappingJacksonValue getOrCreateContainer(Object body) {
         return (body instanceof MappingJacksonValue ? (MappingJacksonValue) body : new MappingJacksonValue(body));
     }
@@ -54,17 +51,17 @@ public class CommonResultControllerAdvice implements ResponseBodyAdvice<Object> 
                                          MethodParameter returnType,
                                          ServerHttpRequest request,
                                          ServerHttpResponse response) {
-        // Get return body
+
         Object returnBody = bodyContainer.getValue();
 
         if (returnBody instanceof BaseResponse) {
-            // If the return body is instance of BaseResponse
+
             BaseResponse<?> baseResponse = (BaseResponse) returnBody;
             response.setStatusCode(HttpStatus.resolve(baseResponse.getStatus()));
             return;
         }
 
-        // Wrap the return body
+
         BaseResponse<?> baseResponse = BaseResponse.ok(returnBody);
         bodyContainer.setValue(baseResponse);
         response.setStatusCode(HttpStatus.valueOf(baseResponse.getStatus()));

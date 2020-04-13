@@ -172,7 +172,7 @@ public class CommentServiceImpl<COMMENT extends Comment> implements CommentServi
 
         log.debug("Getting comment tree view of post: [{}], page info: [{}]", postId, pageNum);
 
-        // List all the top comments (Caution: This list will be cleared)
+
         List<Comment> comments = commentMapper.listCommentByPostId(postId);
 
         return pageVosBy(comments);

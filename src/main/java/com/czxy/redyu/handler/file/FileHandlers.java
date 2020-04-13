@@ -6,7 +6,6 @@ import com.czxy.redyu.model.support.UploadResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
@@ -24,24 +23,15 @@ import java.util.LinkedList;
 @Component
 public class FileHandlers {
 
-    /**
-     * File handler container.
-     */
+
     private final Collection<FileHandler> fileHandlers = new LinkedList<>();
 
     public FileHandlers(ApplicationContext applicationContext) {
-        // Add all file handler
+
         addFileHandlers(applicationContext.getBeansOfType(FileHandler.class).values());
     }
 
-    /**
-     * Uploads files.
-     *
-     * @param file           multipart file must not be null
-     * @param attachmentType attachment type must not be null
-     * @return upload result
-     * @throws FileOperationException throws when fail to delete attachment or no available file handler to upload it
-     */
+
     @NonNull
     public UploadResult upload(@NonNull MultipartFile file, @NonNull Integer attachmentType) {
         Assert.notNull(file, "Multipart file must not be null");
@@ -56,13 +46,8 @@ public class FileHandlers {
         throw new FileOperationException("No available file handler to upload the file").setErrorData(attachmentType);
     }
 
-    /**
-     * Deletes attachment.
-     *
-     * @param attachment attachment detail must not be null
-     * @throws FileOperationException throws when fail to delete attachment or no available file handler to delete it
-     */
-    public void delete(@NonNull Attachment attachment) {
+
+    public void delete( Attachment attachment) {
         Assert.notNull(attachment, "Attachment must not be null");
 
         for (FileHandler fileHandler : fileHandlers) {
@@ -76,14 +61,9 @@ public class FileHandlers {
         throw new FileOperationException("No available file handler to delete the file").setErrorData(attachment);
     }
 
-    /**
-     * Adds file handlers.
-     *
-     * @param fileHandlers file handler collection
-     * @return current file handlers
-     */
-    @NonNull
-    public FileHandlers addFileHandlers(@Nullable Collection<FileHandler> fileHandlers) {
+
+
+    public FileHandlers addFileHandlers( Collection<FileHandler> fileHandlers) {
         if (!CollectionUtils.isEmpty(fileHandlers)) {
             this.fileHandlers.addAll(fileHandlers);
         }

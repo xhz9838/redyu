@@ -36,7 +36,7 @@ public class ControllerHandlerException {
     //在这个方法里定义我们需要返回的格式
     public BaseResponse Demo2(BadRequestException ex){
         BaseResponse<?> response = BaseResponse.ok(ex.getMessage(),ex.getErrorData());
-        System.out.println(response.getData());
+
         response.setStatus(ex.getStatus().value());
         return response;
     }

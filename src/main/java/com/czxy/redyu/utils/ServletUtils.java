@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 /**
- * Servlet utilities.
- *
- * @author johnniang
- * @date 19-4-21
+ * @author xuhongzu
+ * @version 1.0
+ * @date 2019/12/10
  */
 public class ServletUtils {
 

@@ -23,7 +23,7 @@ public interface AttachmentMapper extends Mapper<Attachment> {
     @Select("SELECT media_type FROM attachment GROUP BY media_type")
     List<String> listAllMediaType();
 
-    @Select("SELECT TYPE FROM attachment GROUP BY type")
+    @Select("SELECT type FROM attachment GROUP BY type")
     List<Integer> listTypes();
 
     @Select("SELECT suffix FROM attachment GROUP BY suffix")

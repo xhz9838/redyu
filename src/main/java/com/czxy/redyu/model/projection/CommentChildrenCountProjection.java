@@ -5,10 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Comment children count projection.
- *
- * @author johnniang
- * @date 19-5-14
+ * @author xuhongzu
+ * @version 1.0
+ * @date 2019/12/10
  */
 @Data
 @AllArgsConstructor

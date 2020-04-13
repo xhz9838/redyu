@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,12 +51,12 @@ public class AttachmentController {
         List<AttachmentDTO> result = new LinkedList<>();
 
         for (MultipartFile file : files) {
-            // Upload single file
+
             Attachment attachment = attachmentService.upload(file);
-            // Convert and add
+
             result.add(attachmentService.convertToDto(attachment));
         }
-
+        HashMap<String, String> stringStringHashMap = new HashMap<>();
         return result;
     }
 

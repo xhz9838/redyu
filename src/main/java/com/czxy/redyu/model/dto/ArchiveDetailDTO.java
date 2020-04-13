@@ -1,5 +1,7 @@
 package com.czxy.redyu.model.dto;
 
+import com.czxy.redyu.model.vo.CommentWithHasChildrenVO;
+import com.github.pagehelper.PageInfo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -28,4 +30,7 @@ public class ArchiveDetailDTO extends BasePostSimpleDTO{
 
 
     List<BasePostMinimalDTO> nextAndLast;
+
+
+    PageInfo<CommentWithHasChildrenVO> comment;
 }

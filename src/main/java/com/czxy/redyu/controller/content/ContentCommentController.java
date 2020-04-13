@@ -78,7 +78,7 @@ public class ContentCommentController {
 
     @GetMapping("{postId}/comments/treeView")
     public PageInfo<CommentWithHasChildrenVO> listTopComments(@PathVariable("postId") Integer postId,
-                                                          @RequestParam(name = "page", required = false, defaultValue = "0") Integer pageNum) {
+                                                          @RequestParam(name = "pageNum", required = false, defaultValue = "0") Integer pageNum) {
 
       return commentService.pageTopCommentsBy(postId,1, pageNum,10);
 

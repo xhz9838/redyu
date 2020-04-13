@@ -1,5 +1,9 @@
 package com.czxy.redyu.service;
 
+import com.czxy.redyu.model.entity.VisitLog;
+
+import java.util.List;
+
 /**
  * (VisitLog)表服务接口
  *
@@ -9,4 +13,7 @@ package com.czxy.redyu.service;
 public interface VisitLogService {
 
 
+    List<VisitLog> visitLog();
+
+    void addVisitLog(VisitLog visitLog, String requestIp);
 }

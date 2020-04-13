@@ -7,10 +7,9 @@ import org.springframework.util.Assert;
 import java.io.File;
 
 /**
- * Filename utilities.
- *
- * @author johnniang
- * @date 3/26/19
+ * @author xuhongzu
+ * @version 1.0
+ * @date 2019/12/10
  */
 public class FilenameUtils {
 

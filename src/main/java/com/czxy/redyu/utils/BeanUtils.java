@@ -1,6 +1,5 @@
 package com.czxy.redyu.utils;
 
-
 import com.czxy.redyu.exception.BeanUtilsException;
 import lombok.NonNull;
 import org.springframework.beans.BeanWrapperImpl;
@@ -13,9 +12,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Bean utilities.
- *
- * @author johnniang
+ * @author xuhongzu
+ * @version 1.0
+ * @date 2019/12/10
  */
 public class BeanUtils {
 

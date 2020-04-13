@@ -8,6 +8,7 @@ import com.czxy.redyu.utils.RasUtils;
 import com.czxy.redyu.utils.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
@@ -35,9 +36,11 @@ import java.util.HashSet;
 public class AdminAuthenticationFilter extends OncePerRequestFilter {
 
     private final AntPathMatcher antPathMatcher;
-    private static final String pubKeyPath = "D:\\ras\\ras.pub";
+    @Value("${redyu.ras.pub}")
+    private  String pubKeyPath ;
 
-    private static final String priKeyPath = "D:\\ras\\ras.pri";
+    @Value("${redyu.ras.pri}")
+    private  String priKeyPath;
 
     @Resource
     private RedisUtil redisUtil;

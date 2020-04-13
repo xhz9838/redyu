@@ -2,8 +2,11 @@ package com.czxy.redyu.service;
 
 import com.czxy.redyu.model.dto.BlogAdminLineChart;
 import com.czxy.redyu.model.dto.BlogInformation;
+import com.czxy.redyu.model.entity.VisitLog;
 import com.czxy.redyu.model.params.LoginParam;
 import com.czxy.redyu.security.token.AuthToken;
+
+import java.util.List;
 
 /**
  * @author xuhongzu
@@ -19,4 +22,6 @@ public interface UserService {
     BlogInformation blogInformation();
 
     BlogAdminLineChart blogAdminLineChart();
+
+    List<VisitLog> visitLog();
 }

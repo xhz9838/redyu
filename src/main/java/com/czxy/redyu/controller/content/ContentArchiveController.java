@@ -4,6 +4,7 @@ import com.czxy.redyu.model.dto.ArchiveDetailDTO;
 import com.czxy.redyu.model.dto.ArchiveSimpleDTO;
 import com.czxy.redyu.model.dto.ArchivesByYearAndMonthDTO;
 import com.czxy.redyu.model.dto.SearchResultArchiveDTO;
+import com.czxy.redyu.service.CommentService;
 import com.czxy.redyu.service.PostService;
 import com.czxy.redyu.service.UserService;
 import com.czxy.redyu.utils.QRCodeGenerator;
@@ -31,6 +32,8 @@ public class ContentArchiveController {
     @Resource
     private UserService userService;
 
+    @Resource
+    private CommentService commentService;
     /**
      * 分页查询所有文章
      * @param pageNum 第几页
@@ -85,14 +88,16 @@ public class ContentArchiveController {
     }
 
     /**
-     * 访问文章  文章访问量+1
+     * 访问文章  文章访问量+1 加上评论第一页
      *
      * @param url 文章路径
      * @return 文章详情
      */
     @GetMapping("/archiveByUrl/{url}")
     public ArchiveDetailDTO archiveByUrl(@PathVariable String url) {
-        return postService.archiveByUrl(url);
+        ArchiveDetailDTO archiveDetailDTO = postService.archiveByUrl(url);
+        archiveDetailDTO.setComment(commentService.pageTopCommentsBy(archiveDetailDTO.getId(),1, 1,10));
+        return archiveDetailDTO;
     }
 
     @GetMapping("/getQCCode")
@@ -115,5 +120,6 @@ public class ContentArchiveController {
     public PageInfo<ArchiveSimpleDTO> archiveSimpleDTOPageInfo(@PathVariable Integer year,@RequestParam Integer pageNum){
         return postService.archiveSimpleDTOPageInfo(year,pageNum);
     }
+
 
 }

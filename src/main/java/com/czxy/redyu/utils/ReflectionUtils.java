@@ -8,9 +8,9 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
- * Reflection utilities.
- *
- * @author johnniang
+ * @author xuhongzu
+ * @version 1.0
+ * @date 2019/12/10
  */
 public class ReflectionUtils {
 

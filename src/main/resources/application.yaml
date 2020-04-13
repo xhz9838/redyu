@@ -33,3 +33,6 @@ mybatis:
 redyu:
   desk:
     url: http://www.redyu.run #前台url
+  ras:
+    pub: ${user.home}/ras/ras.pub
+    pri: ${user.home}/ras/ras.pri

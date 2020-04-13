@@ -12,10 +12,9 @@ import javax.validation.Validator;
 import java.util.*;
 
 /**
- * Object validation utilities.
- *
- * @author johnniang
- * @date 03/29/19
+ * @author xuhongzu
+ * @version 1.0
+ * @date 2019/12/10
  */
 public class ValidationUtils {
 

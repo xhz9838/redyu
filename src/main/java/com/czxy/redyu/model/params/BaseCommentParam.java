@@ -12,11 +12,9 @@ import javax.validation.constraints.Size;
 import java.lang.reflect.ParameterizedType;
 
 /**
- * Base Comment param.
- *
- * @author johnniang
- * @author ryanwang
- * @date 2019-03-22
+ * @author xuhongzu
+ * @version 1.0
+ * @date 2019/12/10
  */
 @Data
 public abstract class BaseCommentParam<COMMENT> implements InputConverter<COMMENT> {

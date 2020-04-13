@@ -142,7 +142,7 @@ public interface CommentMapper extends Mapper<Comment> {
      * 查询最新5条评论 将文章url查出来
      * @return 评论列表
      */
-    @Select("SELECT * FROM COMMENT ORDER BY create_time DESC LIMIT 5")
+    @Select("SELECT * FROM `comment` ORDER BY create_time DESC LIMIT 5")
     @Results({
             @Result(property = "postId",column = "post_id"),
             @Result(property = "postUrl",column = "post_id",one = @One(select = "com.czxy.redyu.dao.PostMapper.selectUrlById"))

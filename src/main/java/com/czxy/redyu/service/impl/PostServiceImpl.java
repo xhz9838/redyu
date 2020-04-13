@@ -131,6 +131,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public PageInfo<ArchiveSimpleDTO> archivesByCname(String cname, Integer pageNum) {
         PageHelper.startPage(pageNum, 5);
+
         List<Post> posts = postMapper.findPostByCname(cname);
         List<ArchiveSimpleDTO> archiveSimpleDTOS = posts.stream().map(this::convertToArchiveDTO).collect(Collectors.toList());
 
@@ -154,7 +155,7 @@ public class PostServiceImpl implements PostService {
         posts.stream().forEach(post -> {
             int startIndex;
             int endIndex;
-            int contentIndex = post.getOriginalContent().indexOf(content);
+            int contentIndex = post.getOriginalContent().toLowerCase().indexOf(content.toLowerCase());
             if (contentIndex < 5) {
                 startIndex = 0;
             } else {
@@ -169,7 +170,7 @@ public class PostServiceImpl implements PostService {
             String beforeContent = post.getOriginalContent()
                     .substring(startIndex, contentIndex);
             String afterContent = post.getOriginalContent()
-                    .substring(contentIndex, endIndex);
+                    .substring(contentIndex+content.length(), endIndex);
             buffer.append("<li><a href='")
                     .append(deskUrl)
                     .append("/archives/")
@@ -247,12 +248,17 @@ public class PostServiceImpl implements PostService {
         if (post == null) {
             throw new BadRequestException("文章不存在");
         }
+        Map<String, List<String>> frontMatter = MarkdownUtils.getFrontMatter(post.getOriginalContent());
+
+        System.out.println(frontMatter);
         List<BasePostMinimalDTO> nextAndLast = postMapper.selectLastPostAndNextPost(post.getId());
         post.setVisits(post.getVisits() + 1);
         postMapper.updateByPrimaryKey(post);
         ArchiveDetailDTO archiveDetailDTO = new ArchiveDetailDTO().convertFrom(post);
        archiveDetailDTO.setNextAndLast(nextAndLast);
+
         return archiveDetailDTO;
+
     }
 
     @Override

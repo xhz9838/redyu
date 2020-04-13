@@ -73,6 +73,14 @@ public interface PostMapper extends Mapper<Post> {
     @Select("select * from post where status =0 and original_content like #{content}")
     List<Post> searchResultByKeyword(String content);
 
+    /**
+     *like ____content____
+     * @param content
+     * @return
+     */
+    @Select("select * from post where status =0 and original_content like #{content}")
+    List<Post> searchResultByKeywordForLike(String content);
+
     @Select("select url from post where id = #{id}")
     String selectUrlById(Integer id);
 

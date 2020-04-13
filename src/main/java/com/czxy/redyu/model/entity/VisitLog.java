@@ -26,6 +26,8 @@ public class VisitLog implements Serializable {
     private String username;
     
     private String ipAddress;
+
+    private String address;
     
     private String content;
     

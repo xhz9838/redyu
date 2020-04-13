@@ -48,26 +48,43 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryTreeDTO> listAllTree() {
-        // TODO 代码不优，存在隐患
-        List<Category> categories = categoryMapper.findParent(0);
-        if (!CollectionUtils.isEmpty(categories)) {
-            List<CategoryTreeDTO> categoryTreeDTOList = categories.stream().map(this::convertToTree).collect(Collectors.toList());
-            for (CategoryTreeDTO treeDTO : categoryTreeDTOList) {
-                List<Category> parent = new ArrayList<>();
-                parent = categoryMapper.findParent(treeDTO.getId());
-                while (!CollectionUtils.isEmpty(parent)) {
-                    List<CategoryTreeDTO> categoryTreeDTOS = parent.stream().map(this::convertToTree).collect(Collectors.toList());
-                    treeDTO.setChildren(categoryTreeDTOS);
 
-                    for (CategoryTreeDTO categoryTreeDTO : categoryTreeDTOS) {
-                        parent = categoryMapper.findParent(categoryTreeDTO.getId());
-//                        treeDTO = categoryTreeDTO;
-                    }
-                }
+        List<Category> categories = categoryMapper.selectAll();
+        ArrayList<CategoryTreeDTO> treeDTOS = new ArrayList<>();
+        List<CategoryTreeDTO> categoryTreeDTOS = categories.stream().map(this::convertToTree).collect(Collectors.toList());
+        HashMap<Integer, CategoryTreeDTO> hashMap = new HashMap<>();
+        for (CategoryTreeDTO categoryTreeDTO : categoryTreeDTOS) {
+            if(categoryTreeDTO.getParentId()==0){
+                treeDTOS.add(categoryTreeDTO);
             }
-            return categoryTreeDTOList;
+
+            hashMap.put(categoryTreeDTO.getId(),categoryTreeDTO);
+            CategoryTreeDTO parent = hashMap.get(categoryTreeDTO.getParentId());
+            if(parent!=null){
+                parent.getChildren().add(categoryTreeDTO);
+            }
         }
-        return new ArrayList<>();
+        return treeDTOS;
+        // TODO 代码不优，存在隐患
+//        List<Category> categories = categoryMapper.findParent(0);
+//        if (!CollectionUtils.isEmpty(categories)) {
+//            List<CategoryTreeDTO> categoryTreeDTOList = categories.stream().map(this::convertToTree).collect(Collectors.toList());
+//            for (CategoryTreeDTO treeDTO : categoryTreeDTOList) {
+//                List<Category> parent = new ArrayList<>();
+//                parent = categoryMapper.findParent(treeDTO.getId());
+//                while (!CollectionUtils.isEmpty(parent)) {
+//                    List<CategoryTreeDTO> categoryTreeDTOS = parent.stream().map(this::convertToTree).collect(Collectors.toList());
+//                    treeDTO.setChildren(categoryTreeDTOS);
+//
+//                    for (CategoryTreeDTO categoryTreeDTO : categoryTreeDTOS) {
+//                        parent = categoryMapper.findParent(categoryTreeDTO.getId());
+////                        treeDTO = categoryTreeDTO;
+//                    }
+//                }
+//            }
+//            return categoryTreeDTOList;
+//        }
+//        return new ArrayList<>();
     }
 
     @Override

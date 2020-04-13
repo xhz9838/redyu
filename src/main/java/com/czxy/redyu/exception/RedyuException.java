@@ -5,9 +5,9 @@ import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
 /**
- * Base exception of the project.
- *
- * @author johnniang
+ * @author xuhongzu
+ * @version 1.0
+ * @date 2019/12/10
  */
 public abstract class RedyuException extends RuntimeException {
 

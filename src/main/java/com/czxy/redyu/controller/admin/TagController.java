@@ -45,9 +45,9 @@ public class TagController  {
     }
     @DeleteMapping("/deleteTag/{tagId}")
     public TagDTO deleteTag(@PathVariable("tagId") Integer tagId){
-        // Remove the tag
+
         Tag deletedTag = tagService.removeById(tagId);
-        // Remove the post tag relationship
+
         postTagService.removeByTagId(tagId);
 
         return tagService.convertTo(deletedTag);

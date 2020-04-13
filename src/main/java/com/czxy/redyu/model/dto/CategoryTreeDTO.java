@@ -5,6 +5,7 @@ import com.czxy.redyu.model.entity.Category;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,5 +20,6 @@ public class CategoryTreeDTO implements OutputConverter<CategoryTreeDTO, Categor
 
     private String name;
 
-    private List<CategoryTreeDTO> children;
+     private Integer parentId;
+    private List<CategoryTreeDTO> children = new ArrayList<>();
 }

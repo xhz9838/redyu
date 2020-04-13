@@ -3,6 +3,7 @@ package com.czxy.redyu.controller.admin;
 import com.czxy.redyu.model.dto.BlogAdminLineChart;
 import com.czxy.redyu.model.dto.BlogInformation;
 import com.czxy.redyu.model.dto.UserDTO;
+import com.czxy.redyu.model.entity.VisitLog;
 import com.czxy.redyu.model.params.LoginParam;
 import com.czxy.redyu.security.token.AuthToken;
 import com.czxy.redyu.service.UserService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author xuhongzu
@@ -50,5 +52,10 @@ public class UserController {
     @GetMapping("/visitsLastWeek")
     public BlogAdminLineChart blogAdminLineChart(){
         return userService.blogAdminLineChart();
+    }
+
+    @GetMapping("/visitLog")
+    public List<VisitLog> visitLog(){
+        return userService.visitLog();
     }
 }

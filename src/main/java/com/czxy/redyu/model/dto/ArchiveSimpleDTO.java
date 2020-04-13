@@ -6,7 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 /**
- * Base post detail output dto.
+ * @author xuhongzu
+ * @version 1.0
+ * @date 2019/12/10
  */
 @Data
 @ToString
