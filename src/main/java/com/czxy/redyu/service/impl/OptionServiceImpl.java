@@ -64,7 +64,6 @@ public class OptionServiceImpl implements OptionService {
     @Override
     @SuppressWarnings("unchecked")
     public Map<String, Object> listOptions() {
-        // Get options from cache
 
         return Optional.ofNullable((Map) redisUtil.get(OPTIONS_KEY)).orElseGet(() -> {
             List<Option> options = optionMapper.selectAll();
@@ -85,7 +84,6 @@ public class OptionServiceImpl implements OptionService {
 
             Map<String, Object> result = new HashMap<>(userDefinedOptionMap);
 
-            // Add default property
             propertyEnumMap.keySet()
                     .stream()
                     .filter(key -> !keys.contains(key))
@@ -95,7 +93,6 @@ public class OptionServiceImpl implements OptionService {
                         if (StringUtils.isBlank(propertyEnum.defaultValue())) {
                             return;
                         }
-
                         result.put(key, PropertyEnum.convertTo(propertyEnum.defaultValue(), propertyEnum));
                     });
 

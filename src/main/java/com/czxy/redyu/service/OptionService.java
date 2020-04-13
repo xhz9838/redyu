@@ -1,7 +1,6 @@
 package com.czxy.redyu.service;
 
 import com.czxy.redyu.model.properties.PropertyEnum;
-import org.springframework.lang.NonNull;
 
 import java.util.Map;
 import java.util.Optional;
@@ -17,38 +16,26 @@ public interface OptionService {
 
     Integer getAttachmentType();
 
-    @NonNull
-    Object getByPropertyOfNonNull(@NonNull PropertyEnum property);
 
-    @NonNull
-    Object getByKeyOfNonNull(@NonNull String key);
+    Object getByPropertyOfNonNull(PropertyEnum property);
 
-    @NonNull
-    Optional<Object> getByKey(@NonNull String key);
 
-    @NonNull
+    Object getByKeyOfNonNull( String key);
+
+
+    Optional<Object> getByKey( String key);
+
+
     Map<String, Object> listOptions();
 
-    <T> T getByPropertyOrDefault(@NonNull PropertyEnum property, @NonNull Class<T> propertyType, T defaultValue);
+    <T> T getByPropertyOrDefault( PropertyEnum property,  Class<T> propertyType, T defaultValue);
 
-    /**
-     * Gets property value by blog property.
-     *
-     * @param property     blog property must not be null
-     * @param propertyType property type must not be null
-     * @param <T>          property type
-     * @return property value
-     */
-    <T> Optional<T> getByProperty(@NonNull PropertyEnum property, @NonNull Class<T> propertyType);
 
-    /**
-     * Gets option value by blog property.
-     *
-     * @param property blog property must not be null
-     * @return an optional option value
-     */
-    @NonNull
-    Optional<Object> getByProperty(@NonNull PropertyEnum property);
+    <T> Optional<T> getByProperty(PropertyEnum property,  Class<T> propertyType);
+
+
+
+    Optional<Object> getByProperty( PropertyEnum property);
 
 
 

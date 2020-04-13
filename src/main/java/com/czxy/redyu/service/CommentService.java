@@ -21,49 +21,23 @@ import java.util.List;
 public interface CommentService <COMMENT extends Comment>{
     Integer getCommentCount();
 
-    /**
-     * Creates a comment by comment param.
-     *
-     * @param commentParam commet param must not be null
-     * @return created comment
-     */
+
     @NonNull
     COMMENT createBy(@NonNull BaseCommentParam<COMMENT> commentParam);
 
 
-    /**
-     * Target validation.
-     *
-     * @param targetId target id must not be null (post id, sheet id or journal id)
-     */
     void validateTarget(@NonNull Integer targetId);
 
-    /**
-     * Must exist by id, or throw NotFoundException.
-     *
-     * @param id id
-     *
-     */
     void mustExistById(@NonNull Long id);
 
-    /**
-     * Converts to base comment dto.
-     *
-     * @param comment comment must not be null
-     * @return base comment dto
-     */
-    @NonNull
+
     BaseCommentDTO convertTo(@NonNull COMMENT comment);
 
     List<BaseCommentWithParentVO> listCommentByPostId(Integer postId);
 
     List<BaseCommentVO>  pageVosBy(Integer postId, Integer pageNum);
 
-    /**
-     * Filters comment ip address.
-     *
-     * @param commentPage comment page
-     */
+
     <T extends BaseCommentDTO> Page<T> filterIpAddress(@NonNull Page<T> commentPage);
 
     PageInfo<BaseCommentVO> pageVosByPage(Integer postId, Integer pageNum);

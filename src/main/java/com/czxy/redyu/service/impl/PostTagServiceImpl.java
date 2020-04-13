@@ -43,7 +43,7 @@ public class PostTagServiceImpl implements PostTagService {
     @Override
     public List<PostTag> mergeOrCreateByIfAbsent(Integer postId, Set<Integer> tagIds) {
         List<PostTag> postTagsStaging = tagIds.stream().map(tagId -> {
-            // Build post tag
+
             PostTag postTag = new PostTag();
             postTag.setPostId(postId);
             postTag.setTagId(tagId);
@@ -57,14 +57,10 @@ public class PostTagServiceImpl implements PostTagService {
     @Override
     public List<TagWithPostCountDTO> listTagWithCountDtos() {
 
-
-        // Find all tags
         List<Tag> tags = tagMapper.selectAll();
 
-        // Find all post count
         Map<Integer, Long> tagPostCountMap = ServiceUtils.convertToMap(postTagMapper.findPostCount(), TagPostPostCountProjection::getTagId, TagPostPostCountProjection::getPostCount);
 
-        // Find post count
         return tags.stream().map(
                 tag -> {
                     TagWithPostCountDTO tagWithCountOutputDTO = new TagWithPostCountDTO().convertFrom(tag);

@@ -31,42 +31,6 @@ public class VisitLogServiceImpl implements VisitLogService {
     @Resource
     private PostMapper postMapper;
 
-//    @Pointcut("execution(* com.czxy.redyu.controller.content.ContentArchiveController.archiveForPage(..))")
-//    public void archiveForPage() {
-//
-//    }
-
-
-//    @Around("archiveForPage()")
-//    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
-//        String className = joinPoint.getTarget().getClass().getSimpleName();
-//        String methodName = joinPoint.getSignature().getName();
-//        Object[] args = joinPoint.getArgs();
-//        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-//        HttpServletRequest request = Objects.requireNonNull(requestAttributes).getRequest();
-//        String username = ServletUtils.getHeaderIgnoreCase("username");
-//        String userAgent = ServletUtils.getHeaderIgnoreCase("User-Agent");
-//        String requestIp = ServletUtils.getRequestIp();
-//        if(requestIp!=null&&requestIp.equals("182.92.205.224")){
-//           return joinPoint.proceed();
-//        }
-//        VisitLog visitLog = new VisitLog();
-//        if (methodName.equals("archiveForPage")) {
-//            visitLog.setContent("访问首页");
-//            visitLog.setType(0);
-//            visitLog.setIpAddress(requestIp);
-//            RestTemplate restTemplate = new RestTemplate();
-//
-//
-//            visitLog.setUserAgent(userAgent);
-//            visitLog.setUsername(username);
-//            visitLogDao.insert(visitLog);
-//        }
-//
-//        Object returnObj = joinPoint.proceed();
-//        return returnObj;
-//    }
-
     @Override
     public List<VisitLog> visitLog() {
         return visitLogDao.selectAll();

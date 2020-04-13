@@ -2,8 +2,6 @@ package com.czxy.redyu.service;
 
 import com.czxy.redyu.model.entity.Category;
 import com.czxy.redyu.model.entity.PostCategory;
-import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
 
 import java.util.List;
 import java.util.Set;
@@ -16,7 +14,7 @@ import java.util.Set;
 public interface PostCategoryService {
     void removeByPostId(Integer id);
 
-    List<PostCategory> mergeOrCreateByIfAbsent(@NonNull Integer postId, @Nullable Set<Integer> categoryIds);
+    List<PostCategory> mergeOrCreateByIfAbsent( Integer postId, Set<Integer> categoryIds);
 
     List<PostCategory> findPCSByCid(Integer categoryId);
 

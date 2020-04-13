@@ -15,8 +15,6 @@ import java.util.List;
  */
 public interface UserService {
 
-
-
     AuthToken authenticate(LoginParam loginParam);
 
     BlogInformation blogInformation();

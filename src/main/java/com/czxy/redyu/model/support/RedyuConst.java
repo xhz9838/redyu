@@ -51,9 +51,6 @@ public class RedyuConst {
 
     public static final String FILE_SEPARATOR = File.separator;
 
-    /**
-     * User home directory.
-     */
     public final static String USER_HOME = System.getProperties().getProperty("user.home");
 
 }
