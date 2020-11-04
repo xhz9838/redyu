@@ -70,7 +70,6 @@ public class BeanUtils {
                 emptyNames.add(propertyName);
             }
         }
-
         return emptyNames;
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -56,7 +55,6 @@ public class AttachmentController {
 
             result.add(attachmentService.convertToDto(attachment));
         }
-        HashMap<String, String> stringStringHashMap = new HashMap<>();
         return result;
     }
 

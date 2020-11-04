@@ -92,12 +92,9 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostDetailVO convertToDetailVo(Post post) {
-        // List tags
         List<Tag> tags = postTagService.listTagsBy(post.getId());
-        // List categories
         List<Category> categories = postCategoryService.listCategoriesBy(post.getId());
 
-        // Convert to detail vo
         return convertTo(post, tags, categories);
     }
 
@@ -317,30 +314,21 @@ public class PostServiceImpl implements PostService {
     private PostDetailVO convertTo(@org.springframework.lang.NonNull Post post, @Nullable List<Tag> tags, @Nullable List<Category> categories) {
         Assert.notNull(post, "Post must not be null");
 
-        // Convert to base detail vo
         PostDetailVO postDetailVO = new PostDetailVO().convertFrom(post);
 
         if (StringUtils.isBlank(postDetailVO.getSummary())) {
             postDetailVO.setSummary(post.getFormatContent());
         }
 
-        // Extract ids
         Set<Integer> tagIds = ServiceUtils.fetchProperty(tags, Tag::getId);
         Set<Integer> categoryIds = ServiceUtils.fetchProperty(categories, Category::getId);
 
 
-        // Get post tag ids
         postDetailVO.setTagIds(tagIds);
         postDetailVO.setTags(tagService.convertTo(tags));
 
-        // Get post category ids
         postDetailVO.setCategoryIds(categoryIds);
         postDetailVO.setCategories(categoryService.convertTo(categories));
-
-        // Get post meta ids
-
-
-        //   postDetailVO.setCommentCount(postCommentService.countByPostId(post.getId()));
 
         return postDetailVO;
     }

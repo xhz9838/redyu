@@ -23,11 +23,6 @@ public class ValidationUtils {
     private ValidationUtils() {
     }
 
-    /**
-     * Gets validator, or create it.
-     *
-     * @return validator
-     */
     @NonNull
     public static Validator getValidatorOrCreate() {
         if (VALIDATOR == null) {
@@ -40,22 +35,13 @@ public class ValidationUtils {
         return VALIDATOR;
     }
 
-    /**
-     * Validates bean by hand.
-     *
-     * @param obj    bean to be validated
-     * @param groups validation group
-     * @throws ConstraintViolationException throw if validation failure
-     */
     public static void validate(Object obj, Class<?>... groups) {
 
         Validator validator = getValidatorOrCreate();
 
-        // Validate the object
         Set<ConstraintViolation<Object>> constraintViolations = validator.validate(obj, groups);
 
         if (!CollectionUtils.isEmpty(constraintViolations)) {
-            // If contain some errors then throw constraint violation exception
             throw new ConstraintViolationException(constraintViolations);
         }
     }

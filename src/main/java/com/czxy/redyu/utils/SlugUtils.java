@@ -16,12 +16,6 @@ public class SlugUtils {
     private static final Pattern NON_LATIN = Pattern.compile("[^\\w-]");
     private static final Pattern WHITESPACE = Pattern.compile("[\\s]");
 
-    /**
-     * Slugify string.
-     *
-     * @param input input string must not be blank
-     * @return slug string
-     */
     @NonNull
     @Deprecated
     public static String slugify(@NonNull String input) {
@@ -34,12 +28,6 @@ public class SlugUtils {
     }
 
 
-    /**
-     * Slugify string.
-     *
-     * @param input input string must not be blank
-     * @return slug string
-     */
     public static String slug(@NonNull String input) {
         Assert.hasText(input, "Input string must not be blank");
         String slug = input.
