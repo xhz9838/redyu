@@ -150,9 +150,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         List<CategoryWithPostCountDTO> categoryWithPostCountDTOS = categories.stream()
                 .map(category -> {
-                    // Create category post count dto
                     CategoryWithPostCountDTO categoryWithPostCountDTO = new CategoryWithPostCountDTO().convertFrom(category);
-                    // Set post count
                     categoryWithPostCountDTO.setPostCount(categoryPostCountMap.getOrDefault(category.getId(), 0L));
                     return categoryWithPostCountDTO;
                 })

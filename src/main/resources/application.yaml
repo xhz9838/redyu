@@ -5,16 +5,16 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/redyu_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://182.92.205.224/redyu_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
-    password: 1234
+    password: Xhz199838.
   profiles:
     active: dev
   redis:
-    host: localhost
+    host: 182.92.205.224
     port: 6379
     #timeout: 3000
-    password: 123456
+    password: Xhz199838.
   servlet:
     multipart:
       enabled: true
