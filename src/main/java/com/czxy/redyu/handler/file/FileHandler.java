@@ -17,9 +17,6 @@ public interface FileHandler {
 
     MediaType IMAGE_TYPE = MediaType.valueOf("image/*");
 
-
-
-
      static boolean isImageType( MediaType mediaType) {
         return mediaType != null && IMAGE_TYPE.includes(mediaType);
     }

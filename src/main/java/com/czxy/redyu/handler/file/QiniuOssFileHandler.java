@@ -48,7 +48,6 @@ public class QiniuOssFileHandler implements FileHandler {
     public UploadResult upload(MultipartFile file) {
         Assert.notNull(file, "Multipart file must not be null");
 
-        // Get all config
 
         String accessKey = optionService.getByPropertyOfNonNull(QiniuOssProperties.OSS_ACCESS_KEY).toString();
         String secretKey = optionService.getByPropertyOfNonNull(QiniuOssProperties.OSS_SECRET_KEY).toString();

@@ -92,17 +92,14 @@ public class AdminAuthenticationFilter extends OncePerRequestFilter {
             adminAuthenticationFailureHandler.onFailure(request, response, new AuthenticationException("token验证失败"));
             return;
         }
-//        log.info("token验证成功");
         filterChain.doFilter(request, response);
     }
 
     private String getTokenFromRequest(@NonNull HttpServletRequest request) {
         Assert.notNull(request, "Http请求不能为空");
 
-        // Get from header
         String token = request.getHeader(ADMIN_TOKEN_HEADER_NAME);
 
-        // Get from param
         if (StringUtils.isBlank(token)) {
             token = request.getParameter(ADMIN_TOKEN_QUERY_NAME);
 
