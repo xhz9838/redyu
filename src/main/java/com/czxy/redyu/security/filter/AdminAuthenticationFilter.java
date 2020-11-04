@@ -16,15 +16,14 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.util.Assert;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.*;
 
 /**
  * @author xuhongzu
@@ -60,6 +59,13 @@ public class AdminAuthenticationFilter extends OncePerRequestFilter {
 
     public AdminAuthenticationFilter() {
         antPathMatcher = new AntPathMatcher();
+    }
+
+
+    @PostConstruct
+    public void createRas() throws Exception {
+        log.info("生成ras成功");
+        RasUtils.generateKey(pubKeyPath, priKeyPath, UUID.randomUUID().toString());
     }
 
     @Override
