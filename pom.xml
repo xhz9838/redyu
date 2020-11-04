@@ -16,7 +16,7 @@
         <jwt.jjwt.version>0.9.0</jwt.jjwt.version>
         <jwt.joda.version>2.9.7</jwt.joda.version>
         <lombok.version>1.16.20</lombok.version>
-        <beanutils.version>1.9.3</beanutils.version>
+        <beanutils.version>1.9.4</beanutils.version>
         <flexmark.version>0.42.12</flexmark.version>
     </properties>
     <dependencies>
