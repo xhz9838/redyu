@@ -2,3 +2,39 @@ server:
   port: 10003
   servlet:
     context-path: /prod-api
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://182.92.205.224/redyu_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: Xhz199838.
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 120000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  redis:
+    host: 182.92.205.224
+    port: 6379
+    #timeout: 3000
+    password: Xhz199838.
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+      resolve-lazily: true
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    default-enum-type-handler: com.czxy.redyu.handler.PostStatusHandler
+redyu:
+  desk:
+    url: http://www.redyu.run #前台url
+  ras:
+    pub: ${user.home}/ras/ras.pub
+    pri: ${user.home}/ras/ras.pri

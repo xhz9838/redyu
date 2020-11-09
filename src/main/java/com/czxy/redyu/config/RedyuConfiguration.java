@@ -18,20 +18,6 @@ import java.util.List;
 @Configuration
 public class RedyuConfiguration {
 
-
-
-//    @Bean
-//    public FilterRegistrationBean<AbstractAuthenticationFilter> adminAuthenticationFilter(){
-//
-//
-//        FilterRegistrationBean<AbstractAuthenticationFilter> registrationBean = new FilterRegistrationBean<>();
-//        AbstractAuthenticationFilter abstractAuthenticationFilter = new AbstractAuthenticationFilter();
-//        registrationBean.setFilter(abstractAuthenticationFilter);
-//       registrationBean.addUrlPatterns("/user/**");
-//       registrationBean.setOrder(1);
-//       return registrationBean;
-//    }
-
     @Resource
     private AdminAuthenticationFilter  adminAuthenticationFilter;
 

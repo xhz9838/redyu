@@ -11,7 +11,6 @@ import org.springframework.lang.Nullable;
  * @date 2019/12/20
  */
 @Data
-@ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor

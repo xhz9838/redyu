@@ -6,9 +6,11 @@ import com.czxy.redyu.utils.ExceptionUtils;
 import com.czxy.redyu.utils.JsonUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -23,6 +25,16 @@ import java.io.IOException;
 public class AdminAuthenticationFailureHandler {
 
     private boolean productionEnv = false;
+
+    @Value("${spring.profiles.active}")
+    private String active;
+
+    @PostConstruct
+    public void pre(){
+        if("prod".equals(active)){
+            productionEnv = true;
+        }
+    }
 
     private ObjectMapper objectMapper = JsonUtils.DEFAULT_JSON_MAPPER;
     public void onFailure(HttpServletRequest request, HttpServletResponse response, RedyuException exception) throws IOException {
